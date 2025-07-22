@@ -22,6 +22,7 @@ export interface QSRProperty {
     guarantor?: string;
     noi?: number;
     propertyStats?: string;
+    imageUrl?: string;
 }
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });

@@ -34,7 +34,7 @@ const makeArrow = (
   a: any,
   b: any,
   higherBetter = true
-): JSX.Element | null => {
+): React.ReactNode => {
   if (isNum(a) && isNum(b) && a !== b) {
     const isBetter = higherBetter ? a > b : a < b;
     return (
