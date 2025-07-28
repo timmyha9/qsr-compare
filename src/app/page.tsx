@@ -1,20 +1,18 @@
+// src/app/page.tsx
 import { fetchQSRProperties } from "../lib/notion";
-import PropertyCompareWrapper from "../components/PropertyCompare";
+import PropertyCompare from "../components/PropertyCompare";
 
-export default async function Home() {
-  const databaseId = process.env.NOTION_DATABASE_ID!;
-  const properties = await fetchQSRProperties(databaseId);
+export default async function Page() {
+  const properties = await fetchQSRProperties(process.env.NOTION_DATABASE_ID!);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-100 via-gray-200 to-white px-6 py-10">
-      <div className="mb-8 text-center">
-        <h1 className="inline-block rounded-xl bg-white px-6 py-3 text-3xl font-bold text-gray-800 shadow dark:bg-gray-900 dark:text-white">
+    <main className="container mx-auto px-6 py-8">
+      <div className="mb-8 rounded-lg bg-black/90 px-6 py-4 text-center shadow-lg">
+        <h1 className="text-4xl font-extrabold text-white drop-shadow-sm">
           QSR Property Compare
         </h1>
       </div>
-      <PropertyCompareWrapper initialProperties={properties} />
+      <PropertyCompare initialProperties={properties} />
     </main>
   );
 }
-
-
