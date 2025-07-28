@@ -23,6 +23,8 @@ export interface QSRProperty {
     noi?: number;
     propertyStats?: string;
     imageUrl?: string;
+    previouslyBought?: boolean;
+    salePdfUrl?: string;
 }
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
@@ -56,6 +58,9 @@ export async function fetchQSRProperties(databaseId: string): Promise<QSRPropert
       }
       return undefined;
     };
+
+    const getCheckbox = (label: string) => props[label]?.checkbox ?? false;
+    
     
 
     return {
@@ -81,6 +86,8 @@ export async function fetchQSRProperties(databaseId: string): Promise<QSRPropert
       guarantor: getText("Guarantor"),
       propertyStats: getText("Property Stats"),
       imageUrl: getFileUrl("Image"),
+      previouslyBought: getCheckbox("Previously Bought"),
+      salePdfUrl: getFileUrl("Sale PDF Link"),
     };
   });
 }
