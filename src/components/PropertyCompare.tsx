@@ -142,9 +142,10 @@ export default function PropertyCompare({ initialProperties }: Props) {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                   onClick={() => toggle(p)}
-                  className={`cursor-pointer rounded-lg border bg-white p-4 shadow-md transition hover:ring-2 hover:ring-blue-400 ${
-                    sel ? "ring-2 ring-green-500" : ""
-                  }`}
+                  className={`cursor-pointer rounded-lg border bg-white p-4 shadow-md transition hover:ring-2 hover:ring-blue-400
+                    ${sel ? "ring-2 ring-green-500" : ""}
+                    ${p.previouslyBought ? "border-yellow-400 bg-yellow-50" : ""}
+                  `}
                 >
                   <div className="overflow-hidden rounded mb-2 h-40 w-full">
                     <img
@@ -155,7 +156,14 @@ export default function PropertyCompare({ initialProperties }: Props) {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold text-black mb-1">{p.name}</h3>
+                  <h3 className="text-lg font-semibold text-black mb-1 flex items-center gap-2">
+                    {p.name}
+                    {p.previouslyBought && (
+                        <span className="rounded bg-yellow-300 px-2 py-0.5 text-xs font-medium text-yellow-800">
+                        Previously Bought
+                        </span>
+                    )}
+                    </h3>
                     {sel && (
                       <button
                         onClick={(e) => {
@@ -174,6 +182,19 @@ export default function PropertyCompare({ initialProperties }: Props) {
                   </div>
 
                   <p className="text-sm text-gray-600">{p.address}</p>
+
+                  {p.salePdfUrl && (
+                    <a
+                        href={p.salePdfUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="mt-1 inline-block text-blue-600 text-sm underline hover:text-blue-800"
+                    >
+                        View Sale PDF
+                    </a>
+                    )}
+                    
 
                   {expanded && (
                     <div className="mt-3 space-y-1 text-sm text-black">
