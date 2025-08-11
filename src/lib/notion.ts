@@ -25,6 +25,7 @@ export interface QSRProperty {
     imageUrl?: string;
     previouslyBought?: boolean;
     salePdfUrl?: string;
+    reviewStatus?: string;
 }
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
@@ -88,6 +89,8 @@ export async function fetchQSRProperties(databaseId: string): Promise<QSRPropert
       imageUrl: getFileUrl("Image"),
       previouslyBought: getCheckbox("Previously Bought"),
       salePdfUrl: getFileUrl("Sale PDF Link"),
+      reviewStatus: page.properties["Review Status"]?.select?.name || null,
+
     };
   });
 }
