@@ -132,7 +132,7 @@ export default function PropertyCompare({ initialProperties }: Props) {
             {[...initialProperties]
               .sort((a, b) => {
                 if (sortField === "reviewStatus") {
-                  const order = { Reviewing: 0, Reviewed: 1, Bought: 2 } as const;
+                  const order = { Reviewing: 0, Bought: 1, Reviewed: 2 } as const;
                   const av =
                     order[(a.reviewStatus as keyof typeof order) ?? "Reviewing"];
                   const bv =
