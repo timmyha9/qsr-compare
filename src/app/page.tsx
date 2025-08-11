@@ -1,4 +1,8 @@
 // src/app/page.tsx
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+export const revalidate = 0;
+
 import { fetchQSRProperties } from "../lib/notion";
 import PropertyCompare from "../components/PropertyCompare";
 
