@@ -51,7 +51,7 @@ const makeArrow = (
 export default function PropertyCompare({ initialProperties }: Props) {
   const [sortField, setSortField] = useState<
     "price" | "capRate" | "noi" | "reviewStatus"
-  >("price");
+  >("reviewStatus");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
   const [selected, setSelected] = useState<QSRProperty[]>([]);
   const [open, setOpen] = useState<string[]>([]);
