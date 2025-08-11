@@ -146,9 +146,9 @@ export default function PropertyCompare({ initialProperties }: Props) {
                   onClick={() => toggle(p)}
                   className={`cursor-pointer rounded-lg border bg-white p-4 shadow-md transition hover:ring-2 hover:ring-blue-400
                     ${sel ? "ring-2 ring-green-500" : ""}
-                    ${p.reviewStatus === "Reviewing" ? "border border-gray-300 bg-white" : ""}
-                    ${p.reviewStatus === "Reviewed" ? "border border-gray-400 bg-gray-100" : ""}
-                    ${p.reviewStatus === "Bought" ? "border border-red-500 bg-red-50" : ""}
+                    ${p.reviewStatus === "Reviewing" ? "border-gray-300 bg-white" : ""}
+                    ${p.reviewStatus === "Reviewed"  ? "border-gray-400 bg-gray-100" : ""}
+                    ${p.reviewStatus === "Bought"    ? "border-yellow-400 bg-yellow-50" : ""}
                   `}
                 >
                   <div className="overflow-hidden rounded mb-2 h-40 w-full">
@@ -162,10 +162,18 @@ export default function PropertyCompare({ initialProperties }: Props) {
                   <div className="flex items-center justify-between">
                   <h3 className="text-lg font-semibold text-black mb-1 flex items-center gap-2">
                     {p.name}
-                    {p.previouslyBought && (
-                        <span className="rounded bg-yellow-300 px-2 py-0.5 text-xs font-medium text-yellow-800">
+                    {/* Bought → show 'Previously Bought' tag */}
+                    {p.reviewStatus === "Bought" && (
+                      <span className="rounded bg-yellow-300 px-2 py-0.5 text-xs font-medium text-yellow-900">
                         Previously Bought
-                        </span>
+                      </span>
+                    )}
+                  
+                    {/* Reviewed → show 'Reviewed' tag */}
+                    {p.reviewStatus === "Reviewed" && (
+                      <span className="rounded bg-gray-300 px-2 py-0.5 text-xs font-medium text-gray-800">
+                        Reviewed
+                      </span>
                     )}
                     </h3>
                     {sel && (
