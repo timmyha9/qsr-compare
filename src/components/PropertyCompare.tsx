@@ -104,6 +104,8 @@ export default function PropertyCompare({ initialProperties }: Props) {
         <option value="price">Price</option>
         <option value="capRate">Cap Rate</option>
         <option value="noi">NOI</option>
+        <option value="reviewStatus">Review Status</option>
+
         </select>
     </div>
 
@@ -144,7 +146,9 @@ export default function PropertyCompare({ initialProperties }: Props) {
                   onClick={() => toggle(p)}
                   className={`cursor-pointer rounded-lg border bg-white p-4 shadow-md transition hover:ring-2 hover:ring-blue-400
                     ${sel ? "ring-2 ring-green-500" : ""}
-                    ${p.previouslyBought ? "border-yellow-400 bg-yellow-50" : ""}
+                    ${p.reviewStatus === "Reviewing" ? "border border-gray-300 bg-white" : ""}
+                    ${p.reviewStatus === "Reviewed" ? "border border-gray-400 bg-gray-100" : ""}
+                    ${p.reviewStatus === "Bought" ? "border border-red-500 bg-red-50" : ""}
                   `}
                 >
                   <div className="overflow-hidden rounded mb-2 h-40 w-full">
